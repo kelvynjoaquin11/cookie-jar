@@ -834,21 +834,33 @@ input, textarea, select { font-family: inherit; }
 .context-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
   align-items: start;
-  gap: 20px;
+  gap: 16px 20px;
   width: 62%;
   margin-left: auto;
   padding: 36px 40px 0 0;
+}
+
+.context-quote-wrap {
+  grid-column: 1 / -1;
+  background: rgba(255, 215, 150, 0.06);
+  border: 1px solid rgba(255, 215, 160, 0.18);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .context-steps {
   background: rgba(255, 215, 150, 0.06);
   border: 1px solid rgba(255, 215, 160, 0.18);
   border-radius: var(--radius-lg);
-  padding: 28px 28px 24px;
+  padding: 20px 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 
 .context-heading {
