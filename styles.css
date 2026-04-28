@@ -832,14 +832,22 @@ input, textarea, select { font-family: inherit; }
 /* ─── Context Section ─────────────────────────────────────────────────────── */
 
 .context-section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 720px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "quote video"
+    "steps video";
+  gap: 16px;
+  max-width: 960px;
   width: 100%;
   margin: 44px auto 56px;
   padding: 0 24px;
 }
+
+.context-quote-wrap { grid-area: quote; }
+.context-steps      { grid-area: steps; }
+.context-video      { grid-area: video; }
 
 .context-quote-wrap {
   background: rgba(255, 215, 150, 0.06);
@@ -939,8 +947,8 @@ input, textarea, select { font-family: inherit; }
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid rgba(255, 215, 160, 0.18);
-  aspect-ratio: 16 / 9;
   background: #000;
+  min-height: 220px;
 }
 
 .context-video iframe {
@@ -993,9 +1001,13 @@ input, textarea, select { font-family: inherit; }
   .empty-state { padding: 56px 24px; }
 
   .context-section {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "quote" "video" "steps";
     margin: 28px auto 36px;
     padding: 0 16px;
   }
+  .context-video { aspect-ratio: 16 / 9; min-height: unset; }
   .context-steps { padding: 20px; }
   .wordmark { font-size: 1.5rem; }
   .tagline { font-size: 0.8rem; }
