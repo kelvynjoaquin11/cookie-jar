@@ -834,42 +834,66 @@ input, textarea, select { font-family: inherit; }
 .context-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: start;
   gap: 20px;
-  padding: 24px 32px;
+  padding: 32px 32px 0;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 .context-steps {
-  background: rgba(255, 215, 150, 0.05);
-  border: 1px solid var(--chrome-border);
+  background: rgba(255, 215, 150, 0.06);
+  border: 1px solid rgba(255, 215, 160, 0.18);
   border-radius: var(--radius-lg);
-  padding: 28px 32px;
+  padding: 28px 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
 .context-heading {
   font-family: 'Fraunces', Georgia, serif;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 500;
-  color: var(--chrome-1);
+  color: #F2DDBF;
   letter-spacing: -0.01em;
 }
 
-.context-sub {
-  font-size: 0.8rem;
-  color: var(--chrome-3);
-  line-height: 1.5;
-  margin-top: -8px;
+.goggins-quote {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 0.875rem;
+  color: #D4B896;
+  line-height: 1.75;
+  border-left: 2px solid var(--accent);
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.goggins-quote cite {
+  font-style: normal;
+  font-size: 0.78rem;
+  color: #C49A68;
+  letter-spacing: 0.02em;
+}
+
+.steps-divider {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #C49A68;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 215, 160, 0.12);
 }
 
 .steps-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 13px;
 }
 
 .steps-list li {
@@ -877,13 +901,13 @@ input, textarea, select { font-family: inherit; }
   align-items: flex-start;
   gap: 12px;
   font-size: 0.875rem;
-  color: var(--chrome-2);
-  line-height: 1.5;
+  color: #D4B896;
+  line-height: 1.55;
 }
 
 .steps-list li em {
   font-style: italic;
-  color: var(--chrome-1);
+  color: #F2DDBF;
 }
 
 .step-num {
@@ -898,13 +922,13 @@ input, textarea, select { font-family: inherit; }
   justify-content: center;
   font-size: 0.7rem;
   font-weight: 600;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 
 .context-video {
   border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid var(--chrome-border);
+  border: 1px solid rgba(255, 215, 160, 0.18);
   aspect-ratio: 16 / 9;
   background: #000;
 }
@@ -961,9 +985,11 @@ input, textarea, select { font-family: inherit; }
 
   .context-section {
     grid-template-columns: 1fr;
-    padding: 16px;
+    padding: 20px 16px 0;
+    gap: 16px;
   }
   .context-steps { padding: 20px; }
+  .context-video { aspect-ratio: 16 / 9; }
 }
 
 @media (max-width: 380px) {

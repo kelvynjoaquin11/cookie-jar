@@ -23,22 +23,15 @@
     </nav>
   </header>
 
-  <!-- ── Controls ────────────────────────────────────────────────────────── -->
-  <div class="controls-bar">
-    <div class="search-wrap">
-      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-      </svg>
-      <input type="search" id="search" class="search-input" placeholder="Search your jar…" autocomplete="off" aria-label="Search cookies">
-    </div>
-    <div class="filter-chips" id="filter-chips" role="group" aria-label="Filter by category"></div>
-  </div>
-
   <!-- ── Context Section ─────────────────────────────────────────────────── -->
   <section class="context-section" aria-label="How to use the Cookie Jar">
     <div class="context-steps">
       <h3 class="context-heading">The Cookie Jar Method</h3>
-      <p class="context-sub">David Goggins' technique for pulling yourself out of a dark moment:</p>
+      <blockquote class="goggins-quote">
+        "The Cookie Jar is something I've made up of all the failures of my life. All the things that I failed and I went back and finally succeeded. All the things that kicked my ass, I put them all in the Cookie Jar. Because in times of suffering, even the hardest men forget how hard they are. Suffering is just a test of life. Whenever I get pulled into a "woe is me" or "life sucks" mentality, I step off and pull out something from my Cookie Jar, and remind myself what a badass motherfucker I am. It's a reminder of who you truly are at the core of yourself."
+        <cite>— David Goggins</cite>
+      </blockquote>
+      <div class="steps-divider">How to use it</div>
       <ol class="steps-list">
         <li><span class="step-num">1</span><span>Recognize when the <em>"woe is me"</em> mentality is triggered</span></li>
         <li><span class="step-num">2</span><span>Make the one-second decision to detach from that mindset</span></li>
@@ -57,6 +50,17 @@
       </iframe>
     </div>
   </section>
+
+  <!-- ── Controls ────────────────────────────────────────────────────────── -->
+  <div class="controls-bar">
+    <div class="search-wrap">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="search" id="search" class="search-input" placeholder="Search your jar…" autocomplete="off" aria-label="Search cookies">
+    </div>
+    <div class="filter-chips" id="filter-chips" role="group" aria-label="Filter by category"></div>
+  </div>
 
   <!-- ── Grid ────────────────────────────────────────────────────────────── -->
   <main id="grid" class="grid" aria-label="Cookie grid"></main>
