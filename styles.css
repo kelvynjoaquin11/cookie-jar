@@ -834,6 +834,7 @@ input, textarea, select { font-family: inherit; }
 .context-section {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
   max-width: 1400px;
   width: 100%;
@@ -844,6 +845,7 @@ input, textarea, select { font-family: inherit; }
 .context-quote-wrap,
 .context-video,
 .context-steps {
+  width: 100%;
   max-width: 780px;
 }
 
