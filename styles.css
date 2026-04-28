@@ -832,11 +832,21 @@ input, textarea, select { font-family: inherit; }
 /* ─── Context Section ─────────────────────────────────────────────────────── */
 
 .context-section {
-  max-width: 720px;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-areas:
+    "quote quote"
+    "video steps";
+  gap: 20px;
+  max-width: 1400px;
   width: 100%;
-  margin: 44px auto 56px;
-  padding: 0 24px;
+  margin: 0 auto;
+  padding: 36px 32px 52px;
 }
+
+.context-quote-wrap { grid-area: quote; }
+.context-video      { grid-area: video; aspect-ratio: 16 / 9; }
+.context-steps      { grid-area: steps; }
 
 .context-quote-wrap {
   background: rgba(255, 215, 150, 0.06);
@@ -990,9 +1000,12 @@ input, textarea, select { font-family: inherit; }
   .empty-state { padding: 56px 24px; }
 
   .context-section {
-    margin: 28px auto 36px;
-    padding: 0 16px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "quote" "video" "steps";
+    padding: 20px 16px 36px;
   }
+  .context-video { aspect-ratio: 16 / 9; }
+  .context-steps { padding: 20px; }
   .wordmark { font-size: 1.5rem; }
   .tagline { font-size: 0.8rem; }
 }
