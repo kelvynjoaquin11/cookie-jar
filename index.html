@@ -28,7 +28,7 @@
     <div class="context-quote-wrap">
       <h2 class="context-heading">The Cookie Jar Method</h2>
       <blockquote class="goggins-quote">
-        "The Cookie Jar is something I've made up of all the failures of my life. All the things that I failed and I went back and finally succeeded. All the things that kicked my ass, I put them all in the Cookie Jar. Because in times of suffering, even the hardest men forget how hard they are. Suffering is just a test of life. Whenever I get pulled into a "woe is me" or "life sucks" mentality, I step off and pull out something from my Cookie Jar, and remind myself what a badass motherfucker I am. It's a reminder of who you truly are at the core of yourself."
+        "In times of suffering, even the hardest men forget how hard they are. Whenever I get pulled into a 'woe is me' or 'life sucks' mentality, I step off and pull out something from my Cookie Jar, and remind myself what a badass motherfucker I am."
         <cite>— David Goggins</cite>
       </blockquote>
     </div>
@@ -44,7 +44,7 @@
     <div class="context-steps">
       <div class="steps-divider">How to use it</div>
       <ol class="steps-list">
-        <li><span class="step-num">1</span><span>Recognize when the <em>"woe is me"</em> mentality is triggered</span></li>
+        <li><span class="step-num">1</span><span>Recognize when you need to acknowledge a certain negative emotion</span></li>
         <li><span class="step-num">2</span><span>Make the one-second decision to detach from that mindset</span></li>
         <li><span class="step-num">3</span><span>Reach into your Cookie Jar</span></li>
         <li><span class="step-num">4</span><span>Reflect on a cookie to remind yourself of what you're capable of</span></li>
@@ -154,6 +154,13 @@
             <button class="btn-primary" id="btn-detail-edit">Edit</button>
             <button class="btn-ghost" id="btn-replace-photo-detail">Replace photo</button>
             <button class="btn-danger" id="btn-delete-cookie">Delete</button>
+          </div>
+          <div class="detail-delete-confirm" id="detail-delete-confirm" hidden>
+            <p class="delete-confirm-msg">Delete this cookie? This cannot be undone.</p>
+            <div class="edit-btns">
+              <button class="btn-ghost" id="btn-delete-cancel">Cancel</button>
+              <button class="btn-danger" id="btn-delete-confirm-yes">Yes, delete</button>
+            </div>
           </div>
           <div class="detail-edit-actions" id="detail-edit-actions" hidden>
             <p class="edit-hint">⌘ + Enter to save &nbsp;·&nbsp; Esc to cancel</p>

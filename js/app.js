@@ -205,6 +205,7 @@ async function openDetail(cookieId) {
 
   document.getElementById('detail-normal-actions').hidden = false;
   document.getElementById('detail-edit-actions').hidden = true;
+  document.getElementById('detail-delete-confirm').hidden = true;
 
   // Load photo
   detailUrls.forEach(u => URL.revokeObjectURL(u));
@@ -589,10 +590,19 @@ function setupListeners() {
   document.getElementById('btn-detail-save').addEventListener('click', saveDetailEdit);
   document.getElementById('btn-detail-cancel').addEventListener('click', cancelDetailEdit);
 
-  document.getElementById('btn-delete-cookie').addEventListener('click', async () => {
+  document.getElementById('btn-delete-cookie').addEventListener('click', () => {
+    document.getElementById('detail-normal-actions').hidden = true;
+    document.getElementById('detail-delete-confirm').hidden = false;
+  });
+
+  document.getElementById('btn-delete-cancel').addEventListener('click', () => {
+    document.getElementById('detail-delete-confirm').hidden = true;
+    document.getElementById('detail-normal-actions').hidden = false;
+  });
+
+  document.getElementById('btn-delete-confirm-yes').addEventListener('click', async () => {
     const cookie = Store.getCookies().find(c => c.id === state.detailId);
     if (!cookie) return;
-    if (!confirm(`Delete "${cookie.title}"? This cannot be undone.`)) return;
     if (cookie.photoId) await Photos.deletePhoto(cookie.photoId);
     Store.deleteCookie(state.detailId);
     closeDetail();
