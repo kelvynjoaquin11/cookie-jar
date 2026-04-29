@@ -129,7 +129,7 @@ async function renderGrid() {
     const newBtn = document.getElementById('btn-new-empty');
     if (allCookies.length === 0) {
       title.textContent = 'Your jar is empty';
-      body.textContent = 'Every challenge you\'ve survived belongs here. Start adding your cookies.';
+      body.textContent = 'Every hard-won moment belongs here. Start adding your cookies.';
       newBtn.hidden = false;
     } else if (state.query) {
       title.textContent = 'No results found';
