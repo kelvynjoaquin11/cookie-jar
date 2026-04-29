@@ -366,19 +366,16 @@ input, textarea, select { font-family: inherit; }
   top: 8px;
   right: 8px;
   z-index: 10;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.50);
   border-radius: 4px;
-  padding: 4px;
+  padding: 5px;
   color: #fff;
-  opacity: 0;
-  transition: opacity 0.2s;
+  opacity: 1;
   cursor: grab;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
 }
-.card:hover .card-drag-handle { opacity: 1; }
 
 .card-dragging {
   opacity: 0.4;
