@@ -419,7 +419,7 @@ input, textarea, select { font-family: inherit; }
 }
 
 .card-title {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.075rem;
   font-weight: 500;
   color: var(--text-1);
