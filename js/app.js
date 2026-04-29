@@ -556,10 +556,6 @@ function setupListeners() {
   document.getElementById('btn-manage').addEventListener('click', openCategoriesModal);
   document.getElementById('btn-new-empty').addEventListener('click', () => openCookieModal());
 
-  // Shuffle & Random
-  document.getElementById('btn-shuffle').addEventListener('click', shuffleCookies);
-  document.getElementById('btn-random').addEventListener('click', randomCookie);
-
   // Search
   document.getElementById('search').addEventListener('input', e => {
     state.query = e.target.value.trim();
@@ -761,4 +757,8 @@ function setupListeners() {
       else if (!document.getElementById('detail-modal').hidden && !state.editMode) closeDetail();
     }
   });
+
+  // Shuffle & Random (at end so a missing element never breaks earlier listeners)
+  document.getElementById('btn-shuffle')?.addEventListener('click', shuffleCookies);
+  document.getElementById('btn-random')?.addEventListener('click', randomCookie);
 }

@@ -229,7 +229,7 @@ input, textarea, select { font-family: inherit; }
   align-items: center;
   gap: 6px;
   font-size: 0.8125rem;
-  padding: 8px 14px;
+  padding: 9px 16px;
 }
 
 .controls-btn.shuffle-active {
