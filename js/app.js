@@ -107,6 +107,18 @@ async function renderGrid() {
 
   if (state.shuffled && state.shuffleOrder.length) {
     cookies = [...cookies].sort((a, b) => state.shuffleOrder.indexOf(a.id) - state.shuffleOrder.indexOf(b.id));
+  } else {
+    const order = Store.getOrder();
+    if (order && order.length) {
+      cookies = [...cookies].sort((a, b) => {
+        const ai = order.indexOf(a.id);
+        const bi = order.indexOf(b.id);
+        if (ai === -1 && bi === -1) return 0;
+        if (ai === -1) return -1;
+        if (bi === -1) return 1;
+        return ai - bi;
+      });
+    }
   }
 
   if (state.query) {
@@ -153,11 +165,14 @@ async function renderGrid() {
       ? cookie.reflection.slice(0, 100) + (cookie.reflection.length > 100 ? '…' : '')
       : '';
     return `
-      <article class="card" data-id="${esc(cookie.id)}" tabindex="0" role="button" aria-label="Open ${esc(cookie.title)}">
+      <article class="card" data-id="${esc(cookie.id)}" tabindex="0" role="button" aria-label="Open ${esc(cookie.title)}" draggable="true">
         <div class="card-img-wrap">
           <img class="card-img" data-photo-id="${esc(cookie.photoId || '')}" alt="" hidden>
           <div class="card-img-placeholder">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          </div>
+          <div class="card-drag-handle" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="5" r="1" fill="currentColor"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="9" cy="19" r="1" fill="currentColor"/><circle cx="15" cy="5" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="19" r="1" fill="currentColor"/></svg>
           </div>
         </div>
         <div class="card-body">
@@ -523,6 +538,61 @@ async function importData(file) {
   }
 }
 
+// ─── Drag to Reorder ──────────────────────────────────────────────────────────
+
+function setupDragToReorder() {
+  const grid = document.getElementById('grid');
+  let dragSrcId = null;
+
+  grid.addEventListener('dragstart', e => {
+    if (state.shuffled || state.filter !== 'all' || state.query) { e.preventDefault(); return; }
+    const card = e.target.closest('.card');
+    if (!card) return;
+    dragSrcId = card.dataset.id;
+    card.classList.add('card-dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', dragSrcId);
+  });
+
+  grid.addEventListener('dragover', e => {
+    if (!dragSrcId) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    const card = e.target.closest('.card');
+    grid.querySelectorAll('.card').forEach(c => c.classList.remove('drag-over'));
+    if (card && card.dataset.id !== dragSrcId) card.classList.add('drag-over');
+  });
+
+  grid.addEventListener('dragleave', e => {
+    if (!e.relatedTarget || !grid.contains(e.relatedTarget)) {
+      grid.querySelectorAll('.card').forEach(c => c.classList.remove('drag-over'));
+    }
+  });
+
+  grid.addEventListener('drop', e => {
+    e.preventDefault();
+    if (!dragSrcId) return;
+    const targetCard = e.target.closest('.card');
+    if (!targetCard || targetCard.dataset.id === dragSrcId) { dragSrcId = null; return; }
+
+    const cards = [...grid.querySelectorAll('.card')];
+    let ids = cards.map(c => c.dataset.id);
+    const from = ids.indexOf(dragSrcId);
+    const to = ids.indexOf(targetCard.dataset.id);
+    ids.splice(from, 1);
+    ids.splice(to, 0, dragSrcId);
+
+    Store.saveOrder(ids);
+    dragSrcId = null;
+    renderGrid();
+  });
+
+  grid.addEventListener('dragend', () => {
+    dragSrcId = null;
+    grid.querySelectorAll('.card').forEach(c => c.classList.remove('card-dragging', 'drag-over'));
+  });
+}
+
 // ─── Shuffle & Random ─────────────────────────────────────────────────────────
 
 function shuffleCookies() {
@@ -757,6 +827,8 @@ function setupListeners() {
       else if (!document.getElementById('detail-modal').hidden && !state.editMode) closeDetail();
     }
   });
+
+  setupDragToReorder();
 
   // Shuffle & Random (at end so a missing element never breaks earlier listeners)
   document.getElementById('btn-shuffle')?.addEventListener('click', shuffleCookies);

@@ -361,6 +361,34 @@ input, textarea, select { font-family: inherit; }
 }
 .card:hover .card-img { transform: scale(1.04); }
 
+.card-drag-handle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.45);
+  border-radius: 4px;
+  padding: 4px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.2s;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.card:hover .card-drag-handle { opacity: 1; }
+
+.card-dragging {
+  opacity: 0.4;
+  cursor: grabbing;
+}
+
+.card.drag-over {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .card-img-placeholder {
   position: absolute;
   inset: 0;

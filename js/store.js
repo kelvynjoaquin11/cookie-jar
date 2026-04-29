@@ -1,6 +1,7 @@
 const Store = (() => {
   const COOKIES_KEY = 'cj_cookies';
   const CATS_KEY = 'cj_categories';
+  const ORDER_KEY = 'cj_order';
 
   const DEFAULT_CATEGORIES = [
     { id: 'cat-1', name: 'Proving Capability', order: 0 },
@@ -90,6 +91,15 @@ const Store = (() => {
     return { ok: true };
   }
 
+  function getOrder() {
+    const raw = localStorage.getItem(ORDER_KEY);
+    return raw ? JSON.parse(raw) : null;
+  }
+
+  function saveOrder(ids) {
+    localStorage.setItem(ORDER_KEY, JSON.stringify(ids));
+  }
+
   function exportAll() {
     return {
       version: 1,
@@ -117,6 +127,8 @@ const Store = (() => {
     addCategory,
     renameCategory,
     deleteCategory,
+    getOrder,
+    saveOrder,
     exportAll,
     importAll,
   };
