@@ -329,7 +329,7 @@ input, textarea, select { font-family: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top center;
   transition: transform 0.35s ease;
 }
 .card:hover .card-img { transform: scale(1.04); }
@@ -824,8 +824,8 @@ input, textarea, select { font-family: inherit; }
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%) translateY(12px);
-  background: var(--text-1);
-  color: var(--bg);
+  background: #1a1a1a;
+  color: #fff;
   padding: 11px 20px;
   border-radius: var(--radius-full);
   font-size: 0.85rem;
