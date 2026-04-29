@@ -8,6 +8,8 @@ const state = {
   formCookieId: null,
   pendingFile: null,
   previewUrl: null,
+  shuffled: false,
+  shuffleOrder: [],
 };
 
 // Object URLs created for grid cards — revoked on each render.
@@ -102,6 +104,10 @@ async function renderGrid() {
   let cookies = Store.getCookies();
 
   if (state.filter !== 'all') cookies = cookies.filter(c => c.categoryId === state.filter);
+
+  if (state.shuffled && state.shuffleOrder.length) {
+    cookies = [...cookies].sort((a, b) => state.shuffleOrder.indexOf(a.id) - state.shuffleOrder.indexOf(b.id));
+  }
 
   if (state.query) {
     const q = state.query.toLowerCase();
@@ -517,6 +523,31 @@ async function importData(file) {
   }
 }
 
+// ─── Shuffle & Random ─────────────────────────────────────────────────────────
+
+function shuffleCookies() {
+  state.shuffled = !state.shuffled;
+  if (state.shuffled) {
+    const ids = Store.getCookies().map(c => c.id);
+    for (let i = ids.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [ids[i], ids[j]] = [ids[j], ids[i]];
+    }
+    state.shuffleOrder = ids;
+  } else {
+    state.shuffleOrder = [];
+  }
+  document.getElementById('btn-shuffle').classList.toggle('shuffle-active', state.shuffled);
+  renderGrid();
+}
+
+function randomCookie() {
+  const cookies = Store.getCookies();
+  if (!cookies.length) return;
+  const pick = cookies[Math.floor(Math.random() * cookies.length)];
+  openDetail(pick.id);
+}
+
 // ─── Event Listeners ──────────────────────────────────────────────────────────
 
 function setupListeners() {
@@ -524,6 +555,10 @@ function setupListeners() {
   document.getElementById('btn-new').addEventListener('click', () => openCookieModal());
   document.getElementById('btn-manage').addEventListener('click', openCategoriesModal);
   document.getElementById('btn-new-empty').addEventListener('click', () => openCookieModal());
+
+  // Shuffle & Random
+  document.getElementById('btn-shuffle').addEventListener('click', shuffleCookies);
+  document.getElementById('btn-random').addEventListener('click', randomCookie);
 
   // Search
   document.getElementById('search').addEventListener('input', e => {

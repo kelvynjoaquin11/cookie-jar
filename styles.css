@@ -211,6 +211,33 @@ input, textarea, select { font-family: inherit; }
   margin: 0 auto;
 }
 
+.controls-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.controls-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.controls-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  padding: 8px 14px;
+}
+
+.controls-btn.shuffle-active {
+  background: rgba(255, 220, 170, 0.15);
+  border-color: var(--accent);
+  color: var(--chrome-1);
+}
+
 .search-wrap {
   position: relative;
   max-width: 360px;
