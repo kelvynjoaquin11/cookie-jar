@@ -72,13 +72,6 @@ input, textarea, select { font-family: inherit; }
 
 .wordmark-wrap {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-}
-
-.wordmark-text {
-  display: flex;
   flex-direction: column;
   gap: 1px;
 }
