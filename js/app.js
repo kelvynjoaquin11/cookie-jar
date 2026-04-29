@@ -350,6 +350,7 @@ function openCookieModal(cookieId = null) {
 
   const titleEl = document.getElementById('cookie-modal-title');
   const saveBtn = document.getElementById('btn-save-cookie');
+  saveBtn.disabled = false;
 
   if (cookieId) {
     const cookie = Store.getCookies().find(c => c.id === cookieId);
