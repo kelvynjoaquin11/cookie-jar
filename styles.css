@@ -84,8 +84,8 @@ input, textarea, select { font-family: inherit; }
 }
 
 .jar-mark {
-  width: 36px;
-  height: auto;
+  width: 26px;
+  height: 26px;
   flex-shrink: 0;
 }
 
