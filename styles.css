@@ -361,20 +361,19 @@ input, textarea, select { font-family: inherit; }
 }
 .card:hover .card-img { transform: scale(1.04); }
 
-.card-drag-handle {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 10;
-  background: rgba(0,0,0,0.50);
-  border-radius: 4px;
-  padding: 5px;
-  color: #fff;
-  opacity: 1;
-  cursor: grab;
+.card-top-row {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.card-drag-handle {
+  font-size: 1rem;
+  color: var(--text-2);
+  cursor: grab;
+  line-height: 1;
+  user-select: none;
 }
 
 .card-dragging {
@@ -410,7 +409,7 @@ input, textarea, select { font-family: inherit; }
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
 .card-title {
