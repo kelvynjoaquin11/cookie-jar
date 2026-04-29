@@ -365,6 +365,7 @@ input, textarea, select { font-family: inherit; }
   position: absolute;
   top: 8px;
   right: 8px;
+  z-index: 10;
   background: rgba(0,0,0,0.45);
   border-radius: 4px;
   padding: 4px;
